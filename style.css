@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+  }
+  
+  .blink-text {
+    font-size: 2em;
+    text-align: center;
+    animation: blink 1s step-start infinite;
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+  
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  
+  video.fullscreen-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: -1;
+  }
+  
