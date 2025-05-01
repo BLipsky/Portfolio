@@ -1,4 +1,4 @@
-body {
+.body1 {
     margin: 0;
     padding: 0;
     background-color: black;
@@ -34,4 +34,155 @@ body {
     transition: opacity 1s ease;
     z-index: -1;
   }
-  
+
+/* page 2 */
+
+.body2 {
+  margin: 0;
+  background-color: #141414;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.profiles {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  gap: 40px;
+  padding: 0 40px;
+}
+
+.profile {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.profile:hover {
+  transform: scale(1.1);
+}
+
+.profile-box {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.label {
+  margin-top: 12px;
+  font-size: 1em;
+}
+.watch {
+  margin-top: 15vw;
+  font-size: 2.5em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.box1 {
+  background-image: url("Smile/aqua.jpg");
+  background-size: cover;
+}
+.box2 {
+  background-image: url("Smile/black.png");
+  background-size: cover;
+}
+.box3 {
+  background-image: url("Smile/blue.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center top -17px;
+}
+.box4 {
+  background-image: url("Smile/red.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center top -17px;
+}
+.box5 {
+  background-image: url("Smile/yellow.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center top -17px;
+}
+/* Password */
+
+.manage-link {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s;
+
+}
+
+.manage-link a {
+  color: rgb(151, 151, 151);
+  font-size: 1em;
+  text-decoration: none;
+  border: .25vw solid rgb(151, 151, 151);
+  border-radius: .25vw;
+  width: 15vw;
+
+}
+
+.manage-link a:hover {
+  text-decoration: none;
+  cursor: pointer;
+  transform: scale(1.05);
+
+}
+
+
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20vh;
+}
+
+.login-wrapper h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.login-wrapper input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 250px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.login-wrapper button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 1em;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-wrapper button:hover {
+  background-color: #b00610;
+}
+
+.error-msg {
+  color: #e50914;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
