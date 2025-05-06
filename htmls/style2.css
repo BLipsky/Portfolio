@@ -234,7 +234,7 @@
 }
 
 .nav-links a:hover {
-  transform: scale(1.5);
+  transform: scale(1.02);
   text-shadow: 0 0 10px #ffffff;
 }
 
@@ -243,14 +243,15 @@
 /* Hero Section */
 .hero {
   height: 90vh;
-  background-image: url('https://picsum.photos/1600/900');
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: flex-end;
   padding: 60px 40px;
   margin-top: 95px;
+  transition: background-image 1s ease-in-out;
 }
+
 
 .hero-content {
   max-width: 600px;
@@ -323,4 +324,41 @@
 
 .poster:hover {
   transform: scale(1.05);
+}
+
+.hero-carousel {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
+  margin-top: 95px;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: flex-end;
+  padding: 60px 40px;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel-slide .hero-content {
+  max-width: 600px;
+}
+
+.carousel-slide .branding,
+.carousel-slide .hero-title,
+.carousel-slide .hero-description {
+  color: #fff;
 }

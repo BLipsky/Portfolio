@@ -113,3 +113,31 @@ function checkLogin() {
     }
   }
 }
+// Array of background image URLs
+const carouselImages = [
+  'https://picsum.photos/1600/900?random=101',
+  'https://picsum.photos/1600/900?random=102',
+  'https://picsum.photos/1600/900?random=103',
+  'https://picsum.photos/1600/900?random=104',
+  'https://picsum.photos/1600/900?random=105'
+];
+
+let currentIndex = 0;
+
+// Set initial image
+heroSection.style.backgroundImage = `url(${carouselImages[currentIndex]})`;
+// Carousel rotation logic
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+  });
+  slides[index].classList.add('active');
+}
+
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}, 5000); // changes slide every 5 seconds
