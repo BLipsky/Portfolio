@@ -138,29 +138,45 @@ const track = document.querySelector('.carousel-track');
 const heroTitle = document.getElementById('heroTitle');
 const heroDesc = document.getElementById('heroDesc');
 
-// Generate slides
-carouselImages.forEach(item => {
+// Generate slides dynamically
+carouselImages.forEach(image => {
   const slide = document.createElement('div');
-  slide.className = 'carousel-slide';
-  slide.style.backgroundImage = `url('${item.img}')`;
+  slide.classList.add('carousel-slide');
+  slide.style.backgroundImage = `url(${image.img})`;
+
   track.appendChild(slide);
 });
 
 let currentSlide = 0;
+
+// Update the content (title & description) for the current slide
 function updateContent(index) {
   heroTitle.textContent = carouselImages[index].title;
   heroDesc.textContent = carouselImages[index].description;
+
+  const heroContent = document.querySelector('.hero-content');
+  heroContent.classList.remove('show'); // Reset the animation
+  setTimeout(() => {
+    heroContent.classList.add('show'); // Trigger slide-in animation
+  }, 100); // Small delay for smooth animation
 }
 
+// Transition to the next slide
 function nextSlide() {
   currentSlide = (currentSlide + 1) % carouselImages.length;
-  track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  updateContent(currentSlide);
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;  // Slide the images
+  updateContent(currentSlide);  // Update text with animation
 }
 
-updateContent(0); // Show first slide
-setInterval(nextSlide, 4000);
+updateContent(0); // Initialize with the first slide
+setInterval(nextSlide, 4000);  // Change slide every 4 seconds
+
+
 
 
 
 });
+
+
+
+
