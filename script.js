@@ -125,19 +125,24 @@ const carouselImages = [
 let currentIndex = 0;
 
 // Set initial image
-heroSection.style.backgroundImage = `url(${carouselImages[currentIndex]})`;
 // Carousel rotation logic
-let currentSlide = 0;
+// Get all the carousel slides
 const slides = document.querySelectorAll('.carousel-slide');
+let currentSlide = 0;
 
 function showSlide(index) {
   slides.forEach((slide, i) => {
     slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+    }
   });
-  slides[index].classList.add('active');
 }
 
-setInterval(() => {
+function nextSlide() {
   currentSlide = (currentSlide + 1) % slides.length;
   showSlide(currentSlide);
-}, 5000); // changes slide every 5 seconds
+}
+
+// Start the carousel
+setInterval(nextSlide, 4000); // Change slide every 4 seconds
