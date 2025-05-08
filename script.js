@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 function startVideo() {
   if (window.hasStarted) return;
   window.hasStarted = true;
@@ -158,3 +160,7 @@ function nextSlide() {
 
 updateContent(0); // Show first slide
 setInterval(nextSlide, 4000);
+
+
+
+});
