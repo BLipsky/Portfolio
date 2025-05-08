@@ -115,34 +115,46 @@ function checkLogin() {
 }
 // Array of background image URLs
 const carouselImages = [
-  'https://picsum.photos/1600/900?random=101',
-  'https://picsum.photos/1600/900?random=102',
-  'https://picsum.photos/1600/900?random=103',
-  'https://picsum.photos/1600/900?random=104',
-  'https://picsum.photos/1600/900?random=105'
+  {
+    img: 'https://picsum.photos/1600/900?random=101',
+    title: 'STRANGER THINGS',
+    description: 'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and a strange little girl.'
+  },
+  {
+    img: 'https://picsum.photos/1600/900?random=102',
+    title: 'THE WITCHER',
+    description: 'A mutated monster hunter struggles to find his place in a world where people often prove more wicked than beasts.'
+  },
+  {
+    img: 'https://picsum.photos/1600/900?random=103',
+    title: 'LUCIFER',
+    description: 'Lucifer Morningstar, the Devil, relocates to Los Angeles and opens a nightclub while becoming a consultant to the LAPD.'
+  }
 ];
 
-let currentIndex = 0;
+const track = document.querySelector('.carousel-track');
+const heroTitle = document.getElementById('heroTitle');
+const heroDesc = document.getElementById('heroDesc');
 
-// Set initial image
-// Carousel rotation logic
-// Get all the carousel slides
-const slides = document.querySelectorAll('.carousel-slide');
+// Generate slides
+carouselImages.forEach(item => {
+  const slide = document.createElement('div');
+  slide.className = 'carousel-slide';
+  slide.style.backgroundImage = `url('${item.img}')`;
+  track.appendChild(slide);
+});
+
 let currentSlide = 0;
-
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove('active');
-    if (i === index) {
-      slide.classList.add('active');
-    }
-  });
+function updateContent(index) {
+  heroTitle.textContent = carouselImages[index].title;
+  heroDesc.textContent = carouselImages[index].description;
 }
 
 function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
+  currentSlide = (currentSlide + 1) % carouselImages.length;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  updateContent(currentSlide);
 }
 
-// Start the carousel
-setInterval(nextSlide, 4000); // Change slide every 4 seconds
+updateContent(0); // Show first slide
+setInterval(nextSlide, 4000);
