@@ -254,7 +254,6 @@
 
 
 
-
 .branding {
   font-size: 1em;
   color: #fff;
@@ -264,7 +263,7 @@
 .hero-title {
   font-size: 3em;
   margin: 0 0 10px 0;
-  color: #fff;
+  color: #000000;
 }
 
 .hero-description {
@@ -343,7 +342,7 @@
 .carousel-slide .branding,
 .carousel-slide .hero-title,
 .carousel-slide .hero-description {
-  color: #fff;
+  color: #000000;
 }
 .hero-carousel {
   position: relative;
@@ -367,6 +366,7 @@
   background-position: center;
   flex-shrink: 0;
   position: relative;
+  color: black;
 }
 
 .hero-content {
