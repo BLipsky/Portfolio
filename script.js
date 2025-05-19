@@ -1,10 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const manageBtn = document.getElementById('managePagesBtn');
+  let isLoginActive = false;
+
+  if (manageBtn) {
+    manageBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      showLogin();
+    });
+  }
 
   // Start Video Function
-  function startVideo() {
-    if (window.hasStarted) return;
-    window.hasStarted = true;
-
+function startVideo() {
+  if (window.hasStarted || isLoginActive) return; // Don't start if login is active
+  window.hasStarted = true;
+  
     const startText = document.getElementById('startText');
     startText.style.opacity = '0';
     setTimeout(() => {
@@ -45,23 +55,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // Login Logic
   let failedAttempts = 0;
 
-  function showLogin() {
-    const manageLink = document.querySelector('.manage-link');
-    if (manageLink) {
-      manageLink.style.display = 'none';
-    }
+function showLogin() {
+  isLoginActive = true; // prevent video from playing
 
-    const contentArea = document.getElementById('contentArea');
-    contentArea.innerHTML = `
-      <div class="login-wrapper">
-        <h2>Sign In</h2>
-        <input type="text" id="email" placeholder="Email" />
-        <input type="password" id="password" placeholder="Password" />
-        <button onclick="checkLogin()">Sign In</button>
-        <p id="error" class="error-msg"></p>
-      </div>
-    `;
+  const manageLink = document.querySelector('.manage-link');
+  if (manageLink) {
+    manageLink.style.display = 'none';
   }
+
+  const contentArea = document.getElementById('contentArea');
+  contentArea.innerHTML = `
+    <div class="login-wrapper">
+      <h2>Sign In</h2>
+      <input type="text" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="checkLogin()">Sign In</button>
+      <p id="error" class="error-msg"></p>
+    </div>
+  `;
+}
 
   window.checkLogin = function() {
     const email = document.getElementById("email").value.trim();
@@ -113,18 +125,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Carousel Logic
   const carouselImages = [
     {
-      img: '../img-sites/nfl.png',
-      title: 'SeasonForm',
+      img: 'https://picsum.photos/1600/900?random=101',
+      title: 'STRANGER THINGS',
       description: 'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and a strange little girl.'
     },
     {
-      img: '../img-sites/cafe.png',
-      title: 'Whisp Cafe',
+      img: 'https://picsum.photos/1600/900?random=102',
+      title: 'THE WITCHER',
       description: 'A mutated monster hunter struggles to find his place in a world where people often prove more wicked than beasts.'
     },
     {
-      img: '../img-sites/spooky.png',
-      title: 'Spooky Ghost',
+      img: 'https://picsum.photos/1600/900?random=103',
+      title: 'LUCIFER',
       description: 'Lucifer Morningstar, the Devil, relocates to Los Angeles and opens a nightclub while becoming a consultant to the LAPD.'
     }
   ];
@@ -158,6 +170,64 @@ document.addEventListener('DOMContentLoaded', () => {
     heroTitle.textContent = carouselImages[index].title;
     heroDesc.textContent = carouselImages[index].description;
     heroContent.classList.remove('show');
+    setTimeout(() => heroContent.classList.add('show'), 100);
+  }
+
+  updateSlide(0); // Initialize
+
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % carouselImages.length;
+    updateSlide(currentSlide);
+  }, 5000);
+
+});
+
+  // Carousel Logic
+  const carouselImages = [
+    {
+      img: '../img-sites/nfl.png',
+      title: 'SeasonForm',
+      description: 'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and a strange little girl.'
+    },
+    {
+      img: '../img-sites/cafe.png',
+      title: 'Whisp Cafe',
+      description: 'A mutated monster hunter struggles to find his place in a world where people often prove more wicked than beasts.'
+    },
+    {
+      img: '../img-sites/spooky.png',
+      title: 'Spooky Ghost',
+      description: 'Lucifer Morningstar, the Devil, relocates to Los Angeles and opens a nightclub while becoming a consultant to the LAPD.'
+    }
+  ];
+
+  const heroTitle = document.getElementById('heroTitle');
+  const heroDesc = document.getElementById('heroDesc');
+  const heroContent = document.querySelector('.hero-content');
+
+  carouselImages.forEach((image, index) => {
+    const slide = document.createElement('div');
+    slide.classList.add('carousel-slide');
+    slide.style.backgroundImage = `url(${image.img})`;
+
+  });
+
+
+  let currentSlide = 0;
+
+  function updateSlide(index) {
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    // Update hero content with animation
+    heroTitle.textContent = carouselImages[index].title;
+    heroDesc.textContent = carouselImages[index].description;
+    heroContent.classList.remove('show');
 
     // Force reflow to restart CSS animation cleanly
     void heroContent.offsetWidth;
@@ -172,4 +242,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSlide(currentSlide);
   }, 5000);
 
+document.getElementById('managePagesBtn').addEventListener('click', function (e) {
+  e.preventDefault();
+  e.stopPropagation(); // ✅ prevent triggering startVideo
+  showLogin();
 });
