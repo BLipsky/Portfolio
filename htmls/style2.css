@@ -191,9 +191,12 @@
 /* Base styles */
 .netflix-body {
   margin: 0;
-  background-color: #111;
-  color: #fff;
-  font-family: Helvetica, Arial, sans-serif;
+  display: flex;
+  font-family: 'Bebas Neue', sans-serif;
+  background-color: #000;
+  color: white;
+  padding-left: 80px; /* Space for sidebar */
+  flex-direction: column;
 }
 
 /* Header */
@@ -210,13 +213,32 @@
 }
 
 .logo {
-  font-size: 2em;
-  color: #e50914;
-  font-weight: bold;
-  font-family: 'Bebas Neue', sans-serif;
   font-size: 2.5em;
   color: #e50914;
   text-decoration: none;
+  font-family: 'Bebas Neue', sans-serif;
+  z-index: 11;
+}
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100vh;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 10;
+}
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin: 20px 0;
+  font-size: 14px;
 }
 
 .nav-links {
@@ -249,30 +271,36 @@
   display: flex;
   align-items: flex-end;
   padding: 60px 40px;
-  margin-top: 95px;
   transition: background-image 1s ease-in-out;
+    position: relative;
+  z-index: 0; /* so the overlay sits on top */
+
 }
 
 
 
 .branding {
-  font-size: 1em;
-  color: #fff;
-  margin-bottom: 10px;
+  color: #111; /* darkest gray */
+  font-weight: bold;
+  font-family: 'Bebas Neue', sans-serif;
+    font-size: 2em;
+
 }
 
+
+
 .hero-title {
-  font-size: 3em;
+  font-size: 2em;
   margin: 0 0 10px 0;
-  color: #000000;
+  color: #222;
 }
 
 .hero-description {
   font-size: 1em;
   line-height: 1.5;
-  color: #ccc;
-  margin-bottom: 20px;
+  color: #333;
 }
+
 
 .hero-buttons button {
   margin-right: 10px;
@@ -325,17 +353,94 @@
   transform: scale(1.05);
 }
 
+.carousel-container {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 280px; /* shorter height */
+}
+
+.carousel {
+  display: flex;
+  gap: 10px;
+  padding-left: 300px; /* so the fade/text area doesn’t overlap posters */
+}
+
+.carousel img {
+  width: 180px;
+  height: 270px;
+  border-radius: 6px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.carousel img:hover {
+  transform: scale(1.05);
+}
+
+.carousel-fade-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  background: linear-gradient(to right, black 70%, transparent);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.carousel-text {
+  max-width: 260px;
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+
+
+
+
+
 .hero-carousel {
   position: relative;
   height: 90vh;
   overflow: hidden;
-  margin-top: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
+
+.hero-carousel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%; /* fully black 20% */
+  background: black;
+  z-index: 3;
+}
+.hero-carousel::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  top: 0;
+  height: 100%;
+  width: 20%; /* fade over next 20% */
+  background: linear-gradient(to right, black, transparent);
+  z-index: 3;
+}
+
 
 .carousel-slide.active {
   opacity: 1;
-  z-index: 1;
+  z-index: 2;
+  position: relative; /* or keep absolute depending on layout */
 }
+
 
 .carousel-slide .hero-content {
   max-width: 600px;
@@ -344,42 +449,67 @@
 .carousel-slide .branding,
 .carousel-slide .hero-title,
 .carousel-slide .hero-description {
-  color: #000000;
+  color: #fff; /* or #ddd */
 }
-.hero-carousel {
-  position: relative;
-  overflow: hidden;
-  margin-top: 95px;
-  height: 90vh;
+.carousel-track {
+  display: flex;
+  transition: transform 1s ease;
+  height: 100%;
+  width: 100%;
 }
 
 .carousel-track {
-  display: flex;
-  transition: transform 1s ease-in-out;  /* Smooth slide transition */
+  position: relative;
   height: 100%;
   width: 100%;
-  position: relative;
 }
 
 .carousel-slide {
-  min-width: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
-  flex-shrink: 0;
-  position: relative;
-  color: black;
+  transition: background-image 1s ease;
+  z-index: 0;
 }
+
 
 .hero-content {
   position: absolute;
-  bottom: 60px;
   left: 40px;
-  z-index: 2;
-  max-width: 600px;
-  transform: translateX(100%); /* Start off-screen (right side) */
-  transition: transform 1s ease-in-out;  /* Slide effect for the text */
+  bottom: 120px;
+  z-index: 3;
+  max-width: 40%;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
+
 .hero-content.show {
-  transform: translateX(0);  /* Slide text into view */
+  opacity: 1;
+}
+.hero-content h2 {
+  font-size: 3em;
+  margin: 0;
+  color: white;
+}
+.hero-content p {
+  font-size: 1.2em;
+  color: #ddd;
+  margin-top: 10px;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 60%);
+  z-index: 1;
+  pointer-events: none;
 }
