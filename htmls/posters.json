@@ -1,0 +1,19 @@
+{
+  "posters": [
+    {
+      "name": "The Shadow Heist",
+      "backgroundImage": "../img-sites/small/cafe.png",
+      "link": "/watch.html?title=shadow-heist"
+    },
+    {
+      "name": "Neon Drift",
+      "backgroundImage": "../img-sites/small/nfl.png",
+      "link": "/watch.html?title=neon-drift"
+    },
+    {
+      "name": "Ghost Signal",
+      "backgroundImage": "../img-sites/small/spooky.png",
+      "link": "/watch.html?title=ghost-signal"
+    }
+  ]
+}
