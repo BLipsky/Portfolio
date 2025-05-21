@@ -133,44 +133,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   createSlides();
   setInterval(nextSlide, 7000);
-});
-  async function loadPosters() {
-    const container = document.getElementById('poster-container');
-    container.innerHTML = ''; // Clear existing posters if any
 
-    try {
-      const response = await fetch('posters.json'); // Adjust path if needed
-      if (!response.ok) throw new Error('Failed to load posters.json');
-      
-      const data = await response.json();
-      
-      data.posters.forEach(poster => {
-        // Create poster element
-        const posterDiv = document.createElement('div');
-        posterDiv.classList.add('poster');
-        posterDiv.style.backgroundImage = `url(${poster.backgroundImage})`;
-        
-        // Create label overlay
-        const label = document.createElement('div');
-        label.classList.add('poster-label');
-        label.textContent = poster.name;
-        
-        // Make whole poster clickable and link to target
-        const link = document.createElement('a');
-        link.href = poster.link;
-        link.appendChild(posterDiv);
-        
-        // Append label inside posterDiv
-        posterDiv.appendChild(label);
+loadPosters();
+fetch('../posters.json')
+async function loadPosters() {
+  const container = document.getElementById('poster-container');
+  container.innerHTML = ''; // Clear old posters
 
-        // Append to container
-        container.appendChild(link);
-      });
-    } catch (error) {
-      console.error('Error loading posters:', error);
-      container.textContent = 'Failed to load posters.';
-    }
+  try {
+    const response = await fetch('posters.json'); // Adjust path as necessary
+    if (!response.ok) throw new Error('Failed to load posters.json');
+
+    const data = await response.json();
+
+    data.posters.forEach(poster => {
+      // Create poster div
+      const posterDiv = document.createElement('div');
+      posterDiv.classList.add('poster');
+      posterDiv.style.backgroundImage = `url(${poster.backgroundImage})`;
+      posterDiv.title = poster.description; // Tooltip on hover
+
+      const link = document.createElement('a');
+      link.href = `${poster.link}`; // or link to details page
+      link.appendChild(posterDiv);
+      container.appendChild(link);
+
+      // Add label overlay
+      const label = document.createElement('div');
+      label.classList.add('poster-label');
+      label.textContent = poster.name;
+
+      posterDiv.appendChild(label);
+
+      container.appendChild(posterDiv);
+    });
+  } catch (error) {
+    console.error('Error loading posters:', error);
+    container.textContent = 'Failed to load posters.';
   }
-
-  // Run on page load
-  window.addEventListener('DOMContentLoaded', loadPosters);
+}
+});

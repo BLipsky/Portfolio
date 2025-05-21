@@ -1,19 +1,64 @@
 {
   "posters": [
     {
-      "name": "The Shadow Heist",
-      "backgroundImage": "../img-sites/small/cafe.png",
-      "link": "/watch.html?title=shadow-heist"
+      "name": "Historical Figure Project",
+      "backgroundImage": "../img-sites/small/S1.png",
+      "link": "https://blipsky.github.io/FamousPersonProject/"
     },
     {
-      "name": "Neon Drift",
-      "backgroundImage": "../img-sites/small/nfl.png",
-      "link": "/watch.html?title=neon-drift"
+      "name": "College Project",
+      "backgroundImage": "../img-sites/small/S2.png",
+      "link": "https://blipsky.github.io/College-Project/"
     },
     {
-      "name": "Ghost Signal",
-      "backgroundImage": "../img-sites/small/spooky.png",
-      "link": "/watch.html?title=ghost-signal"
+      "name": "Rock, Paper, Scissors! Project",
+      "backgroundImage": "../img-sites/small/S3.png",
+      "link": "https://blipsky.github.io/RPS-FIXED/"
+    },
+    {
+      "name": "Career Project",
+      "backgroundImage": "../img-sites/small/S4.png",
+      "link": "https://blipsky.github.io/Career-Site/"
+    },
+    {
+      "name": "Toy Shop Project",
+      "backgroundImage": "../img-sites/small/S5.png",
+      "link": "https://blipsky.github.io/Lil-Toy-Shop/"
+    },
+    {
+      "name": "Random Names Project",
+      "backgroundImage": "../img-sites/small/S6.png",
+      "link": "https://blipsky.github.io/Lucky-Names/"
+    },
+    {
+      "name": "Website Gallery Project",
+      "backgroundImage": "../img-sites/small/S7.png",
+      "link": "https://blipsky.github.io/Gallery/"
+    },
+    {
+      "name": "Magic 8-Ball Project",
+      "backgroundImage": "../img-sites/small/S8.png",
+      "link": "https://blipsky.github.io/8-Ball-Project/"
+    },
+    {
+      "name": "Birthday Project",
+      "backgroundImage": "../img-sites/small/S9.png",
+      "link": "https://blipsky.github.io/Birthday-Site/"
+    },
+    {
+      "name": "Famous Architect Project",
+      "backgroundImage": "../img-sites/small/S10.png",
+      "link": "https://blipsky.github.io/Old-Famous-Person-Sophomore/"
+    },
+    {
+      "name": "Madlibs Project",
+      "backgroundImage": "../img-sites/small/S11.png",
+      "link": "https://blipsky.github.io/Madlibs/"
+    },
+    {
+      "name": "Movie Poster Project",
+      "backgroundImage": "../img-sites/small/S12.png",
+      "link": "https://blipsky.github.io/Movie-Poster-Site/"
     }
   ]
 }
