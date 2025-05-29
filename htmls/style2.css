@@ -348,14 +348,17 @@
   }
 
   .poster {
-    width: 320px;
-    height: 180px;
+    width: 150px;
+    height: 225px;
     background-size: cover;
     background-position: center;
     position: relative;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
   }
 
   .poster-label {
@@ -374,7 +377,8 @@
   }
 
 .poster:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  z-index: 10;
 }
 
 .carousel-container {

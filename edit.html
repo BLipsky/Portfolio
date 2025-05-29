@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="plus">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Control Panel with Analytics</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body class="plus">
+  <aside class="control-analytics left" aria-label="Analytics Sidebar Left">
+  </aside>
+
+  <main class="control-center" role="main">
+    <div class="control-header">Page Management Control Panel</div>
+
+    <div class="control-grid">
+
+      <div class="control-card">
+        <h3>Edit Posters</h3><br>
+        <select class="control-poster-select" aria-label="Select Poster to edit">
+          <option>Select Poster</option>
+          <option>Poster 1</option>
+          <option>Poster 2</option>
+        </select><br><br><br>
+        <button class="control-edit-poster-btn">Edit Selected</button>
+      <br><br></div>
+
+      <div class="control-card">
+        <h3>Shorten Launch Sequence</h3><br>
+        <input
+          type="number"
+          min="0"
+          placeholder="Seconds to shorten"
+          class="control-launch-input"
+          aria-label="Seconds to shorten launch sequence"
+        /><br><br><br>
+        <button class="control-launch-apply-btn">Apply</button>
+      <br><br></div>
+
+      <div class="control-card">
+        <h3>Change Cover Sites</h3><br>
+        <input
+          type="text"
+          placeholder="Enter new cover site URL"
+          class="control-cover-input"
+          aria-label="New cover site URL"
+        /><br><br><br>
+        <button class="control-cover-update-btn">Update</button>
+      <br><br></div>
+
+      <!-- New cards with charts -->
+
+      <div class="control-card">
+        <h3>Set Featured Genre</h3><br>
+        <select class="control-genre-select" aria-label="Select featured genre">
+          <option>Select Genre</option>
+          <option>Action</option>
+          <option>Drama</option>
+          <option>Comedy</option>
+          <option>Documentary</option>
+          <option>Horror</option>
+        </select><br><br><br>
+        <button class="control-genre-set-btn">Set</button>
+      <br><br></div>
+
+      <div class="control-card">
+        <h3>Toggle Auto Refresh</h3><br>
+        <button id="auto-refresh-btn">Enable Auto Refresh</button>
+      </div>
+            <div class="control-card">
+        <h3>Activate WireFrames</h3>
+        <select class="control-poster-select" aria-label="Select Poster to edit">
+          <option>Choose WireFrame</option>
+          <option>WireFrame Alpha</option>
+          <option>WireFrame Beta</option>
+          <option>WireFrame Gamma</option>
+          <option>WireFrame Delta</option>
+          <option>WireFrame Epsilon</option>
+          <option>WireFrame Zeta</option>
+
+        </select><br><br><br>
+        <button class="control-edit-poster-btn">Activate Selected</button>
+      <br><br></div>
+
+
+            <div class="control-card">
+        <h3>Allow Access</h3><br>
+        <select class="control-poster-select" aria-label="Select Poster to edit">
+          <option>Choose Option</option>
+          <option>Private</option>
+          <option>Public</option>
+        </select><br><br><br>
+        <button class="control-edit-poster-btn">Edit Selected</button>
+      <br><br></div>
+
+      <div class="control-card">
+        <h3>Restart Page Number
+        </h3><br>
+        <input
+          type="number"
+          min="0"
+          placeholder="Enter Re-Launch Number"
+          class="control-launch-input"
+          aria-label="Seconds to shorten launch sequence"
+        /><br><br><br>
+        <button class="control-launch-apply-btn">Apply</button>
+      <br><br></div>
+
+      <div class="control-card">
+        <h3>Control Backend</h3><br>
+        <input
+          type="text"
+          placeholder="Backend Option #"
+          class="control-cover-input"
+          aria-label="New cover site URL"
+        /><br><br><br>
+        <button class="control-cover-update-btn">Update</button>
+      <br><br></div>
+
+    </div>
+
+    <div class="control-footer">
+        All Changes Are Final - Please Make Sure To Commit Before Applying Changes To Prevent Overlap.
+    </div><br><br><br><br>
+    <img src="graph.jpg" class="full">
+
+  </main>
+  <aside class="control-analytics right" aria-label="Analytics Sidebar Right">
+  </aside>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

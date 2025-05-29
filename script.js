@@ -3,30 +3,40 @@ document.addEventListener('DOMContentLoaded', () => {
   let isLoginActive = false;
   let failedAttempts = 0;
   window.hasStarted = false;
-
-  function startVideo() {
-    if (isChoosePage || window.hasStarted || isLoginActive) return;
-    window.hasStarted = true;
-
-    const video = document.createElement('video');
-    video.classList.add('fullscreen-video');
-    video.src = 'Opening.mp4';
-    video.autoplay = true;
-    video.playsInline = true;
-    video.muted = false;
-    video.volume = 1;
-    video.style.opacity = '0';
-    document.body.appendChild(video);
-
-    requestAnimationFrame(() => {
-      video.style.opacity = '1';
-      video.play().catch(err => console.warn('Autoplay blocked:', err));
-    });
-
-    video.addEventListener('ended', () => {
-      window.location.href = 'main.html';
-    });
+  const startText = document.getElementById('startText');
+  if (!startText) {
+    // Not the start page, do nothing for start video
+    return;
   }
+
+  
+function startVideo() {
+  if (isChoosePage || window.hasStarted || isLoginActive) return;
+  window.hasStarted = true;
+
+  // Hides the "Press Any Key to Start" text
+
+  if (startText) startText.style.display = 'none';
+
+  const video = document.createElement('video');
+  video.classList.add('fullscreen-video');
+  video.src = 'Opening.mp4';
+  video.autoplay = true;
+  video.playsInline = true;
+  video.muted = false;
+  video.volume = 1;
+  video.style.opacity = '0';
+  document.body.appendChild(video);
+
+  requestAnimationFrame(() => {
+    video.style.opacity = '1';
+    video.play().catch(err => console.warn('Autoplay blocked:', err));
+  });
+
+  video.addEventListener('ended', () => {
+    window.location.href = 'main.html';
+  });
+}
 
   document.addEventListener('click', e => {
     const isManage = !!e.target.closest('#managePagesBtn');
@@ -172,4 +182,38 @@ async function loadPosters() {
     container.textContent = 'Failed to load posters.';
   }
 }
+
+  document.querySelector('.control-edit-poster-btn').addEventListener('click', () => {
+    const poster = document.querySelector(".control-poster-select").value;
+    alert("Editing: " + poster);
+  });
+
+  document.querySelector('.control-launch-apply-btn').addEventListener('click', () => {
+    const seconds = document.querySelector(".control-launch-input").value;
+    alert("Launch shortened by " + seconds + " seconds.");
+  });
+
+  document.querySelector('.control-cover-update-btn').addEventListener('click', () => {
+    const url = document.querySelector(".control-cover-input").value;
+    alert("Cover site changed to: " + url);
+  });
+
+  document.querySelector('.control-schedule-btn').addEventListener('click', () => {
+    const datetime = document.querySelector(".control-schedule-input").value;
+    alert("Content update scheduled for: " + datetime);
+  });
+
+  document.querySelector('.control-genre-set-btn').addEventListener('click', () => {
+    const genre = document.querySelector(".control-genre-select").value;
+    alert("Featured genre set to: " + genre);
+  });
+
+  let autoRefreshEnabled = false;
+  const autoRefreshBtn = document.getElementById("auto-refresh-btn");
+  autoRefreshBtn.addEventListener('click', () => {
+    autoRefreshEnabled = !autoRefreshEnabled;
+    autoRefreshBtn.textContent = autoRefreshEnabled ? "Disable Auto Refresh" : "Enable Auto Refresh";
+    alert("Auto Refresh " + (autoRefreshEnabled ? "Enabled" : "Disabled"));
+  });
+
 });
