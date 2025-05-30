@@ -97,91 +97,104 @@ function startVideo() {
     }
   };
 
-  // === Hero Carousel ===
-  const carouselImages = [
-    { img: '../img-sites/nfl.png', title: 'SeasonForm', description: 'When a young boy vanishes…' },
-    { img: '../img-sites/cafe.png', title: 'Whisp Cafe', description: 'A mutated monster hunter…' },
-    { img: '../img-sites/spooky.png', title: 'Spooky Ghost', description: 'Lucifer relocates to L.A.…' }
-  ];
-
-  const track = document.querySelector('.carousel-track');
-  const heroTitle = document.getElementById('heroTitle');
-  const heroDesc = document.getElementById('heroDesc');
-  const heroContent = document.querySelector('.hero-content');
-
-  let currentSlide = 0;
-
-  function createSlides() {
-    carouselImages.forEach(({ img }, i) => {
-      const slide = document.createElement('div');
-      slide.classList.add('carousel-slide');
-      if (i === 0) slide.classList.add('active');
-      slide.style.backgroundImage = `url(${img})`;
-      track.appendChild(slide);
-    });
-    updateHeroText();
+// === Hero Carousel ===
+const carouselImages = [
+  {
+    title: 'Whisp Cafe',
+    description: 'A mutated monster hunter must hunt in the shadows of a cursed village.',
+    image: url('img-sites/cafe.png')
+  },
+  {
+    title: 'SeasonForm',
+    description: 'When a young boy vanishes, a small town uncovers a supernatural secret.',
+    image: 'img-sites/nfl.png'
+  },
+  {
+    title: 'Spooky Ghost',
+    description: 'Lucifer relocates to L.A. to punish sinners while running a nightclub.',
+    image: 'img-sites/spooky.png'
   }
+];
 
-  function updateHeroText() {
-    heroTitle.textContent = carouselImages[currentSlide].title;
-    heroDesc.textContent = carouselImages[currentSlide].description;
-    heroContent.classList.add('show');
-  }
+const track = document.querySelector('.carousel-track');
+const heroTitle = document.getElementById('heroTitle');
+const heroDesc = document.getElementById('heroDesc');
+const heroContent = document.querySelector('.hero-content');
 
-  function updateSlidePosition() {
-    const slides = document.querySelectorAll('.carousel-slide');
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[currentSlide].classList.add('active');
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    updateHeroText();
-  }
+let currentSlide = 0;
 
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % carouselImages.length;
-    updateSlidePosition();
-  }
+function createSlides() {
+  carouselImages.forEach(({ image }, i) => {
+    const slide = document.createElement('div');
+    slide.classList.add('carousel-slide');
+    if (i === 0) slide.classList.add('active');
+    slide.style.backgroundImage = `url(${image})`;
+    track.appendChild(slide);
+  });
+  updateHeroText();
+}
 
-  createSlides();
-  setInterval(nextSlide, 7000);
+function updateHeroText() {
+  heroTitle.textContent = carouselImages[currentSlide].title;
+  heroDesc.textContent = carouselImages[currentSlide].description;
+  heroContent.classList.add('show');
+}
 
-loadPosters();
-fetch('../posters.json')
+function updateSlidePosition() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  slides.forEach(slide => slide.classList.remove('active'));
+  slides[currentSlide].classList.add('active');
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  updateHeroText();
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % carouselImages.length;
+  updateSlidePosition();
+}
+
+createSlides();
+setInterval(nextSlide, 7000);
+
+// === Posters ===
 async function loadPosters() {
   const container = document.getElementById('poster-container');
-  container.innerHTML = ''; // Clear old posters
+  if (!container) {
+    console.warn("poster-container element not found.");
+    return;
+  }
+  container.innerHTML = '';
 
   try {
-    const response = await fetch('posters.json'); // Adjust path as necessary
+    const response = await fetch('posters.json');
     if (!response.ok) throw new Error('Failed to load posters.json');
-
     const data = await response.json();
 
     data.posters.forEach(poster => {
-      // Create poster div
+      const a = document.createElement('a');
+      a.href = poster.link;
+
       const posterDiv = document.createElement('div');
-      posterDiv.classList.add('poster');
+      posterDiv.className = 'poster';
       posterDiv.style.backgroundImage = `url(${poster.backgroundImage})`;
-      posterDiv.title = poster.description; // Tooltip on hover
+      posterDiv.title = poster.description;
 
-      const link = document.createElement('a');
-      link.href = `${poster.link}`; // or link to details page
-      link.appendChild(posterDiv);
-      container.appendChild(link);
-
-      // Add label overlay
       const label = document.createElement('div');
-      label.classList.add('poster-label');
+      label.className = 'poster-label';
       label.textContent = poster.name;
 
       posterDiv.appendChild(label);
-
-      container.appendChild(posterDiv);
+      a.appendChild(posterDiv);
+      container.appendChild(a);
     });
-  } catch (error) {
-    console.error('Error loading posters:', error);
+  } catch (err) {
+    console.error('Error loading posters:', err);
     container.textContent = 'Failed to load posters.';
   }
 }
+
+loadPosters();
+
 
   document.querySelector('.control-edit-poster-btn').addEventListener('click', () => {
     const poster = document.querySelector(".control-poster-select").value;
