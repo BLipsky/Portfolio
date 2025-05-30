@@ -9,34 +9,32 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  
-function startVideo() {
-  if (isChoosePage || window.hasStarted || isLoginActive) return;
-  window.hasStarted = true;
+  function startVideo() {
+    if (isChoosePage || window.hasStarted || isLoginActive) return;
+    window.hasStarted = true;
 
-  // Hides the "Press Any Key to Start" text
+    // Hides the "Press Any Key to Start" text
+    if (startText) startText.style.display = 'none';
 
-  if (startText) startText.style.display = 'none';
+    const video = document.createElement('video');
+    video.classList.add('fullscreen-video');
+    video.src = 'Opening.mp4';
+    video.autoplay = true;
+    video.playsInline = true;
+    video.muted = false;
+    video.volume = 1;
+    video.style.opacity = '0';
+    document.body.appendChild(video);
 
-  const video = document.createElement('video');
-  video.classList.add('fullscreen-video');
-  video.src = 'Opening.mp4';
-  video.autoplay = true;
-  video.playsInline = true;
-  video.muted = false;
-  video.volume = 1;
-  video.style.opacity = '0';
-  document.body.appendChild(video);
+    requestAnimationFrame(() => {
+      video.style.opacity = '1';
+      video.play().catch(err => console.warn('Autoplay blocked:', err));
+    });
 
-  requestAnimationFrame(() => {
-    video.style.opacity = '1';
-    video.play().catch(err => console.warn('Autoplay blocked:', err));
-  });
-
-  video.addEventListener('ended', () => {
-    window.location.href = 'main.html';
-  });
-}
+    video.addEventListener('ended', () => {
+      window.location.href = 'main.html';
+    });
+  }
 
   document.addEventListener('click', e => {
     const isManage = !!e.target.closest('#managePagesBtn');
@@ -97,104 +95,56 @@ function startVideo() {
     }
   };
 
-// === Hero Carousel ===
-const carouselImages = [
-  {
-    title: 'Whisp Cafe',
-    description: 'A mutated monster hunter must hunt in the shadows of a cursed village.',
-    image: url('img-sites/cafe.png')
-  },
-  {
-    title: 'SeasonForm',
-    description: 'When a young boy vanishes, a small town uncovers a supernatural secret.',
-    image: 'img-sites/nfl.png'
-  },
-  {
-    title: 'Spooky Ghost',
-    description: 'Lucifer relocates to L.A. to punish sinners while running a nightclub.',
-    image: 'img-sites/spooky.png'
+document.addEventListener("DOMContentLoaded", () => {
+  const carousel = document.querySelector(".carousel");
+  const carouselText = document.querySelector(".carousel-text");
+  const posterRow = document.querySelector(".poster-row");
+
+  // Load posters.json and initialize everything
+  fetch("htmls/posters.json")
+    .then(response => response.json())
+    .then(data => {
+      initCarousel(data);
+      loadPosters(data);
+    })
+    .catch(error => console.error("Failed to load posters.json:", error));
+
+  function initCarousel(posters) {
+    let index = 0;
+
+    const updateCarousel = () => {
+      const { image, title, genre, description } = posters[index];
+
+      carousel.style.backgroundImage = `url('${image}')`;
+      carouselText.innerHTML = `
+        <h1>${title}</h1>
+        <h3>${genre}</h3>
+        <p>${description}</p>
+      `;
+
+      index = (index + 1) % posters.length;
+    };
+
+    updateCarousel();
+    setInterval(updateCarousel, 5000);
   }
-];
 
-const track = document.querySelector('.carousel-track');
-const heroTitle = document.getElementById('heroTitle');
-const heroDesc = document.getElementById('heroDesc');
-const heroContent = document.querySelector('.hero-content');
+  function loadPosters(posters) {
+    posters.forEach(({ title, image }) => {
+      const poster = document.createElement("div");
+      poster.classList.add("poster");
 
-let currentSlide = 0;
+      const img = document.createElement("img");
+      img.src = image;
+      img.alt = title;
 
-function createSlides() {
-  carouselImages.forEach(({ image }, i) => {
-    const slide = document.createElement('div');
-    slide.classList.add('carousel-slide');
-    if (i === 0) slide.classList.add('active');
-    slide.style.backgroundImage = `url(${image})`;
-    track.appendChild(slide);
-  });
-  updateHeroText();
-}
-
-function updateHeroText() {
-  heroTitle.textContent = carouselImages[currentSlide].title;
-  heroDesc.textContent = carouselImages[currentSlide].description;
-  heroContent.classList.add('show');
-}
-
-function updateSlidePosition() {
-  const slides = document.querySelectorAll('.carousel-slide');
-  slides.forEach(slide => slide.classList.remove('active'));
-  slides[currentSlide].classList.add('active');
-  track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  updateHeroText();
-}
-
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % carouselImages.length;
-  updateSlidePosition();
-}
-
-createSlides();
-setInterval(nextSlide, 7000);
-
-// === Posters ===
-async function loadPosters() {
-  const container = document.getElementById('poster-container');
-  if (!container) {
-    console.warn("poster-container element not found.");
-    return;
-  }
-  container.innerHTML = '';
-
-  try {
-    const response = await fetch('posters.json');
-    if (!response.ok) throw new Error('Failed to load posters.json');
-    const data = await response.json();
-
-    data.posters.forEach(poster => {
-      const a = document.createElement('a');
-      a.href = poster.link;
-
-      const posterDiv = document.createElement('div');
-      posterDiv.className = 'poster';
-      posterDiv.style.backgroundImage = `url(${poster.backgroundImage})`;
-      posterDiv.title = poster.description;
-
-      const label = document.createElement('div');
-      label.className = 'poster-label';
-      label.textContent = poster.name;
-
-      posterDiv.appendChild(label);
-      a.appendChild(posterDiv);
-      container.appendChild(a);
+      poster.appendChild(img);
+      posterRow.appendChild(poster);
     });
-  } catch (err) {
-    console.error('Error loading posters:', err);
-    container.textContent = 'Failed to load posters.';
   }
-}
+});
 
-loadPosters();
-
+  // Keep all the rest of your control buttons handlers untouched below
 
   document.querySelector('.control-edit-poster-btn').addEventListener('click', () => {
     const poster = document.querySelector(".control-poster-select").value;
