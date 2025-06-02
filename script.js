@@ -95,10 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-document.addEventListener("DOMContentLoaded", () => {
   const carousel = document.querySelector(".carousel");
   const carouselText = document.querySelector(".carousel-text");
-  const posterRow = document.querySelector(".poster-row");
+  const posterRow = document.querySelector("#poster-rows");
 
   // Load posters.json and initialize everything
   fetch("htmls/posters.json")
@@ -179,4 +178,3 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Auto Refresh " + (autoRefreshEnabled ? "Enabled" : "Disabled"));
   });
 
-});

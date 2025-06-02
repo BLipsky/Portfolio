@@ -521,6 +521,25 @@ video.fullscreen-video {
   opacity: 0;
   transition: opacity 1s ease;
 }
+.poster {
+  display: inline-block;
+  margin: 10px;
+  width: 150px;
+  height: 225px;
+  background-color: #222;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.poster:hover {
+  transform: scale(1.05);
+}
+
 .poster-row {
   display: flex;
   overflow-x: auto;
