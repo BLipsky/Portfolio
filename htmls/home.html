@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Netflix Clone</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style2.css" />
 </head>
 <body class="netflix-body">
@@ -17,15 +17,19 @@
     <a href="other.html">Other</a>
   </div>
 
-<div class="carousel">
-  <div class="carousel-text"></div>
-</div>
+  <!-- Add this container for login and profiles management -->
+  <div id="contentArea"></div>
 
-<section class="row">
-  <h2 class="section-title">Popular on Netflix</h2>
-  <div id="poster-rows"></div>
-</section>
+  <div class="carousel">
+    <!-- Carousel images container -->
+    <div class="carousel-track"></div>
+    <div class="carousel-text"></div>
+  </div>
 
+  <section class="row">
+    <h2 class="section-title">Popular on Netflix</h2>
+    <div id="poster-row"></div>
+  </section>
 
   <script src="../script.js"></script>
 </body>
