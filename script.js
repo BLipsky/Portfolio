@@ -124,101 +124,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // ----------- CAROUSEL & POSTERS CODE --------------
-
-  // Array of carousel items with image paths and captions
-  const carouselItems = [
-    {
-      image: '../img-sites/cafe.jpg',
-      text: 'Cozy Cafe Vibes'
-    },
-    {
-      image: '../img-sites/nfl.jpg',
-      text: 'Big Game Highlights'
-    },
-    {
-      image: '../img-sites/spooky.jpg',
-      text: 'Spooky Season Specials'
-    }
-  ];
-
-  // Select carousel container and caption elements
-  const carousel = document.querySelector('.carousel');
-  const carouselText = document.querySelector('.carousel-text');
-
-  // Create an img element inside the carousel container to display images
-  const carouselImg = document.createElement('img');
-  carousel.appendChild(carouselImg);
-
-  let currentIndex = 0;
-
-  // Function to update carousel image and text based on current index
-  function showCarouselItem(index) {
-    const item = carouselItems[index];
-    carouselImg.src = item.image;
-    carouselText.textContent = item.text;
+const carouselItems = [
+  {
+    image: '../img-sites/cafe.jpg',
+    text: 'Cozy Cafe Vibes',
+    description: 'Relax and enjoy your coffee in a cozy setting.'
+  },
+  {
+    image: '../img-sites/nfl.jpg',
+    text: 'Big Game Highlights',
+    description: 'Catch the most exciting moments from the NFL.'
+  },
+  {
+    image: '../img-sites/spooky.jpg',
+    text: 'Spooky Season Specials',
+    description: 'Get ready for Halloween with spooky specials.'
   }
+];
 
-  // Show first carousel item on load
-  showCarouselItem(currentIndex);
 
-  // Auto rotate carousel every 5 seconds
+  const carouselImg = document.getElementById('carouselImage');
+  const carouselText = document.getElementById('carouselText');
+  let currentIndex = 0;
+  const carouselDescription = document.getElementById('carouselDescription');
+
+function showCarouselItem(index) {
+  carouselImg.src = carouselItems[index].image;
+  carouselText.textContent = carouselItems[index].text;
+  carouselDescription.textContent = carouselItems[index].description;
+}
+
+
+  document.querySelector('.carousel-btn.left').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+    showCarouselItem(currentIndex);
+  });
+
+  document.querySelector('.carousel-btn.right').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % carouselItems.length;
+    showCarouselItem(currentIndex);
+  });
+
   setInterval(() => {
     currentIndex = (currentIndex + 1) % carouselItems.length;
     showCarouselItem(currentIndex);
   }, 5000);
 
-  // --------- POSTERS ROW -----------
+  showCarouselItem(currentIndex);
 
-  // Get container for posters
-  const posterRowsContainer = document.getElementById('poster-rows');
-  if (posterRowsContainer) {
-    posterRowsContainer.innerHTML = ''; // Clear existing posters content
-
-    // Determine base path for fetching posters.json depending on current page location
-    // If inside /htmls/, basePath is empty; otherwise 'htmls/'
-    const isInHtmls = window.location.pathname.includes('/htmls/');
-    const basePath = isInHtmls ? '' : 'htmls/';
-
-    // Fetch posters.json to get poster data
-    fetch(basePath + 'posters.json')
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to load posters.json');
-        return response.json();
-      })
-      .then(data => {
-        const posters = data.posters;
-
-        // Create a new div to hold poster row
-        const posterRow = document.getElementById("poster-row");
-        posterRow.classList.add('poster-row');
-
-        posters.forEach(poster => {
-          // Adjust image source path by removing "../" and prepending basePath
-          let imgSrc = poster.backgroundImage.replace(/^(\.\.\/)+/, basePath);
-
-          // Create link element for each poster
-          const link = document.createElement('a');
-          link.href = poster.link;
-          link.target = '_blank';               // Open in new tab
-          link.rel = 'noopener noreferrer';    // Security best practice
-
-          // Create img element with poster image and alt text
-          const img = document.createElement('img');
-          img.src = imgSrc;
-          img.alt = poster.name;
-
-          // Append img to link, and link to poster row
-          link.appendChild(img);
-          posterRow.appendChild(link);
-        });
-
-        // Append populated poster row to container
-        posterRowsContainer.appendChild(posterRow);
-      })
-      .catch(error => {
-        // Log any error while loading posters
-        console.error('Error loading posters:', error);
+  // ------------------- POSTERS --------------------
+  const posterRow = document.getElementById('poster-row');
+  fetch('../htmls/posters.json')
+    .then(res => res.json())
+    .then(data => {
+      data.posters.forEach(poster => {
+        const link = document.createElement('a');
+        link.href = poster.link;
+        link.target = '_blank';
+        const img = document.createElement('img');
+        img.src = poster.backgroundImage.replace(/^(\.\.\/)+/, '../img-sites/small/');
+        img.alt = poster.name;
+        link.appendChild(img);
+        posterRow.appendChild(link);
       });
-  }
+    })
+    .catch(err => console.error('Failed to load posters.json:', err));
 });
+

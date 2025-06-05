@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wireframe Gallery</title>
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #141414;
+      color: white;
+      padding-left: 80px; /* account for sidebar */
+            text-align: center;
+
+    }
+
+
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 20px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .header {
+      position: relative;
+      height: 40vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .grid-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+      animation: gridMove 20s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes gridMove {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 40px 40px;
+      }
+    }
+
+    .header h1 {
+      z-index: 2;
+      font-size: 3em;
+      color: white;
+      text-shadow: 2px 2px 10px #000;
+    }
+
+    .gallery {
+      padding: 40px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-text {
+      padding: 10px;
+      text-align: center;
+      font-size: 1em;
+      font-weight: 500;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="nav-links">
+    <a href="../Main.html"><i class="fas fa-user"></i></a>       <!-- Profile -->
+    <a href="home.html"><i class="fas fa-house"></i></a>         <!-- Home -->
+    <a href="about.html"><i class="fas fa-info-circle"></i></a>  <!-- About -->
+    <a href="contact.html"><i class="fas fa-envelope"></i></a>   <!-- Contact -->
+    <a href="other.html"><i class="fas fa-ellipsis-h"></i></a>   <!-- Other -->
+  </div>
+</div>
+
+  <div class="header">
+    <div class="grid-bg"></div>
+    <h1>Wireframe Gallery</h1>
+  </div>
+
+  <div class="gallery">
+    <div class="card">
+      <img src="Wireframes/ss1.png" alt="Wireframe 1">
+      <div class="card-text">Marlboro Tech-Ed</div>
+    </div>
+    <div class="card">
+      <img src="Wireframes/ss2.png" alt="Wireframe 2">
+      <div class="card-text">Portfolio</div>
+    </div>
+    <div class="card">
+      <img src="Wireframes/ss3.png" alt="Wireframe 3">
+      <div class="card-text">Engineering Graphics</div>
+    </div>
+        <div class="card">
+      <img src="Wireframes/ss4.png" alt="Wireframe 4">
+      <div class="card-text">Client Site</div>
+    </div>
+
+    <!-- Add more cards as needed -->
+  </div>
+
+</body>
+</html>

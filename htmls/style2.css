@@ -224,15 +224,17 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 80px;
+  width: 80px !important;     /* Force exact width */
+  max-width: 80px !important; /* Prevent stretching */
   height: 100vh;
   background-color: #111;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
-  z-index: 10;
-  text-align: center;
+  padding: 20px 0;            /* Vertical padding only, no horizontal */
+  box-sizing: border-box;     /* Include padding in width */
+  z-index: 1000;
+  overflow-x: hidden;         /* Prevent horizontal scroll */
 }
 
 .navbar a {
@@ -241,14 +243,16 @@
   margin: 20px 0;
   font-size: 18px;
 }
+.navbar a:hover {
+  font-weight: 600;
 
-
+}
 .nav-links {
   display: flex;
-  justify-content: left; /* Align to the left */
-  gap: 6vw; /* Add spacing between the links */
-  margin-left: 5vw;
+  flex-direction: column;
+  gap: 25px; /* Adjust spacing here */
 }
+
 
 .nav-links a {
   color: #fff;
@@ -384,6 +388,80 @@
   text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
   z-index: 10;
   max-width: 70%;
+}
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px; /* or whatever fits your design */
+  margin: auto;
+  overflow: hidden;
+  background-color: #000; /* dark background for contrast */
+  border-radius: 8px;
+  user-select: none;
+}
+
+#carouselImage {
+  width: 100%;
+  height: 400px; /* fixed height or responsive as you want */
+  object-fit: contain; /* contain to avoid cropping */
+  display: block;
+  background-color: #222; /* fallback bg */
+}
+
+.carousel-text-container {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  text-align: left;
+  max-width: 60%;
+  pointer-events: none; /* disables hover/focus */
+}
+
+.carousel-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.carousel-description {
+  margin: 4px 0 8px 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.carousel-item-text {
+  font-size: 16px;
+  font-weight: normal;
+  opacity: 0.9;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: black;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+  user-select: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.carousel-btn:hover {
+  opacity: 1;
+}
+
+.carousel-btn.left {
+  left: 10px;
+}
+
+.carousel-btn.right {
+  right: 10px;
 }
 
 .hero-carousel {
@@ -560,4 +638,150 @@ video.fullscreen-video {
 .poster-row::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
+}
+
+.body3 {
+  margin: 0;
+  background-color: #141414;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100vh;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.navbar a {
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+  transition: color 0.3s;
+  text-align: center;
+}
+
+.navbar a:hover {
+  color: #999;
+}
+
+.carousel-section {
+  margin-left: 80px;
+  padding: 20px;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 15px;
+  border-radius: 8px;
+  max-width: 300px;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.carousel-btn.left {
+  left: 10px;
+}
+
+.carousel-btn.right {
+  right: 10px;
+}
+
+#poster-rows {
+  margin-left: 80px;
+  padding: 30px 20px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.poster-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.poster-row a {
+  display: block;
+  width: 160px;
+  transition: transform 0.2s;
+}
+
+.poster-row a:hover {
+  transform: scale(1.05);
+}
+
+.poster-row img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#carouselExampleCaptions {
+  margin: 0;
+  max-width: calc(100vw - 80px); /* Full width minus sidebar */
+  position: fixed;               /* Fix to top so it stays visible */
+  top: 0;
+  left: 80px;
+  z-index: 900;                 /* Below sidebar but above content */
+}
+
+/* Push main content down so it doesn't go under carousel */
+main.content {
+  padding-top: 300px; /* Adjust this height to match carousel height */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
