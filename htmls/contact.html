@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #141414;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 100vh;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      z-index: 1000;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .content {
+      margin-left: 90px;
+      padding: 60px 20px;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      font-size: 1em;
+      background-color: #222;
+      color: white;
+      border: 1px solid #555;
+      border-radius: 4px;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #E50914;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 1em;
+      background-color: #E50914;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    button:hover {
+      background-color: #ff0a16;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="nav-links">
+    <a href="../Main.html"><i class="fas fa-user"></i></a>
+    <a href="home.html"><i class="fas fa-house"></i></a>
+    <a href="about.html"><i class="fas fa-info-circle"></i></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i></a>
+    <a href="other.html"><i class="fas fa-ellipsis-h"></i></a>
+  </div>
+</div>
+
+<div class="content">
+  <h1>Contact Us</h1>
+  <form>
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Your Email" required />
+    <textarea rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+</body>
+</html>

@@ -409,3 +409,15 @@
     svg.control-line-chart circle {
       fill: #666;
     }
+.hmb {
+  border: .1vw solid #141414;
+  background-color: #e2e2e2 ;
+  border-radius: 2vw;
+  width: 70vw;
+  text-align: center;
+  padding: 1.5vw;
+  margin-bottom: 2vw;
+  color: #141414;
+  text-decoration: none;
+  font-size: larger;
+}
