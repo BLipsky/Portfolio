@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // When video ends, redirect to main.html page
     video.addEventListener('ended', () => {
-      window.location.href = 'main.html';
+      window.location.href = 'Main.html';
     });
   }
 

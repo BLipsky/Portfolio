@@ -1,1 +1,254 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Other</title>
+<link rel="icon" href="/logo.png" type="image/png" />
+
+    <link rel="stylesheet" href="style2.css" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: white;
+    padding-left: 80px; /* space for sidebar */
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 100vh;
+      /* full viewport height */
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 15vw;
+      z-index: 1000;
+    }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: transform 0.2s, text-shadow 0.2s;
+    padding: 5px 0;
+  }
+  .nav-links a:hover {
+    transform: scale(1.02);
+    text-shadow: 0 0 10px #fff;
+  }
+
+  /* Header */
+  .header {
+    position: relative;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 40px;
+    z-index: 10;
+  }
+  .grid-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    animation: gridMove 20s linear infinite;
+    z-index: 1;
+  }
+  @keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 40px 40px; }
+  }
+  .header h1 {
+    position: relative;
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 10px #000;
+    z-index: 2;
+  }
+
+  /* Container for shapes - positioned behind */
+  .shapes-container {
+    position: absolute;
+    top: 110px; /* below header */
+    left: 80px; /* next to navbar */
+    right: 0;
+    bottom: 0;
+    pointer-events: none; /* shapes won't block clicks */
+    z-index: 5; /* behind text */
+  }
+
+  /* Each shape absolutely placed with some overlap */
+  .circle, .hexagon, .triangle {
+    position: absolute;
+    background: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  .circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    top: 20px;
+    left: 20px;
+  }
+  .hexagon {
+    width: 260px;
+    height: 225px;
+    clip-path: polygon(
+      25% 6.7%, 75% 6.7%, 
+      100% 50%, 75% 93.3%, 
+      25% 93.3%, 0% 50%
+    );
+    top: 100px;
+    left: 180px;
+  }
+  .triangle {
+    width: 260px;
+    height: 230px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    top: 60px;
+    left: 350px;
+  }
+  /* Hover scale */
+  .circle:hover, .hexagon:hover, .triangle:hover {
+    transform: scale(1.05);
+  }
+
+  /* Text boxes container on top */
+  .textboxes-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    z-index: 10;
+    text-align: left;
+  }
+  .textbox {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    color: white;
+  }
+  .textbox h2 {
+    margin-top: 0;
+  }
+  .textbox p {
+    font-size: 0.9em;
+    line-height: 1.4;
+    color: #ccc;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    body {
+      padding-left: 0;
+      text-align: left;
+    }
+    .navbar {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      flex-direction: row;
+      padding: 0 10px;
+      justify-content: center;
+      gap: 20px;
+    }
+    .nav-links a {
+      font-size: 18px;
+      margin: 0 10px;
+    }
+    .textboxes-container {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding: 0 10px;
+    }
+    /* Shapes: remove clip-path and set relative inside container */
+    .shapes-container {
+      position: relative;
+      top: 0;
+      left: 0;
+      height: auto;
+      pointer-events: auto;
+      margin-bottom: 40px;
+    }
+    .circle, .hexagon, .triangle {
+      position: relative;
+      width: 100%;
+      height: auto;
+      clip-path: none;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      left: 0 !important;
+      top: 0 !important;
+    }
+  }
+  .ben-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 30px;
+  user-select: none;
+}
+
+.ben-letter {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #E50914; /* Netflix Red */
+  line-height: 1;
+  font-family: 'Bebas Neue', cursive;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Sidebar Navbar -->
+<div class="navbar">
+  <div class="nav-links">
+<a href="../index.html"><div style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5em; color: #E50914;">
+  B E N
+</div></a>
+    <a href="../Main.html"><i class="fas fa-user"></i></a>       <!-- Profile -->
+    <a href="home.html"><i class="fas fa-house"></i></a>         <!-- Home -->
+    <a href="about.html"><i class="fas fa-info-circle"></i></a>  <!-- About -->
+    <a href="contact.html"><i class="fas fa-envelope"></i></a>   <!-- Contact -->
+    <a href="other.html"><i class="fas fa-ellipsis-h"></i></a>   <!-- Other -->
+  </div>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <div class="grid-bg"></div>
+  <h1>Other</h1>
+</div>
