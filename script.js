@@ -126,17 +126,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const carouselItems = [
   {
-    image: '../img-sites/cafe.jpg',
+    image: url("img-sites/cafe.jpg"),
     text: 'Cozy Cafe Vibes',
     description: 'Relax and enjoy your coffee in a cozy setting.'
   },
   {
-    image: '../img-sites/nfl.jpg',
+    image: 'img-sites/nfl.jpg',
     text: 'Big Game Highlights',
     description: 'Catch the most exciting moments from the NFL.'
   },
   {
-    image: '../img-sites/spooky.jpg',
+    image: 'img-sites/spooky.jpg',
     text: 'Spooky Season Specials',
     description: 'Get ready for Halloween with spooky specials.'
   }

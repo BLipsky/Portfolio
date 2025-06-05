@@ -1,38 +1,40 @@
 .body1 {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Courier New', monospace;
-  }
-  
-  .blink-text {
-    font-size: 2em;
-    text-align: center;
-    animation: blink 1s step-start infinite;
-    opacity: 1;
-    transition: opacity 1s ease;
-  }
-  
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-  
-  video.fullscreen-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Courier New", monospace;
+}
+
+.blink-text {
+  font-size: 2em;
+  text-align: center;
+  animation: blink 1s step-start infinite;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+@keyframes blink {
+  50% {
     opacity: 0;
-    transition: opacity 1s ease;
-    z-index: -1;
   }
+}
+
+video.fullscreen-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: -1;
+}
 
 /* page 2 */
 
@@ -84,7 +86,7 @@
 .watch {
   margin-top: 15vw;
   font-size: 2.5em;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .box1 {
@@ -122,24 +124,21 @@
   align-items: center;
   text-align: center;
   transition: transform 0.2s;
-
 }
 
 .manage-link a {
   color: rgb(151, 151, 151);
   font-size: 1em;
   text-decoration: none;
-  border: .25vw solid rgb(151, 151, 151);
-  border-radius: .25vw;
+  border: 0.25vw solid rgb(151, 151, 151);
+  border-radius: 0.25vw;
   width: 15vw;
-
 }
 
 .manage-link a:hover {
   text-decoration: none;
   cursor: pointer;
   transform: scale(1.05);
-
 }
 
 .login-wrapper {
@@ -184,14 +183,13 @@
   font-size: 0.9em;
 }
 
-
 /* Netflix-style CSS layout */
 
 /* Base styles */
 .netflix-body {
   margin: 0;
   display: flex;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   background-color: #000;
   color: white;
   padding-left: 80px;
@@ -215,26 +213,22 @@
   font-size: 2.5em;
   color: #e50914;
   text-decoration: none;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   z-index: 11;
 }
-
 
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 80px !important;     /* Force exact width */
-  max-width: 80px !important; /* Prevent stretching */
-  height: 100vh;
+  width: 80px;
+  height: 100vh; /* full viewport height */
   background-color: #111;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;            /* Vertical padding only, no horizontal */
-  box-sizing: border-box;     /* Include padding in width */
+  padding-top: 20px;
   z-index: 1000;
-  overflow-x: hidden;         /* Prevent horizontal scroll */
 }
 
 .navbar a {
@@ -245,14 +239,12 @@
 }
 .navbar a:hover {
   font-weight: 600;
-
 }
 .nav-links {
   display: flex;
   flex-direction: column;
   gap: 25px; /* Adjust spacing here */
 }
-
 
 .nav-links a {
   color: #fff;
@@ -267,8 +259,6 @@
   text-shadow: 0 0 10px #ffffff;
 }
 
-
-
 /* Hero Section */
 .hero {
   height: 90vh;
@@ -278,22 +268,16 @@
   align-items: flex-end;
   padding: 60px 40px;
   transition: background-image 1s ease-in-out;
-    position: relative;
+  position: relative;
   z-index: 0; /* so the overlay sits on top */
-
 }
-
-
 
 .branding {
   color: #111; /* darkest gray */
   font-weight: bold;
-  font-family: 'Bebas Neue', sans-serif;
-    font-size: 2em;
-
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2em;
 }
-
-
 
 .hero-title {
   font-size: 2em;
@@ -307,7 +291,6 @@
   color: #333;
 }
 
-
 .hero-buttons button {
   margin-right: 10px;
   padding: 10px 20px;
@@ -320,16 +303,15 @@
   background-color: #fff;
   color: #000;
   font-weight: bold;
-  border: .25px solid black;
+  border: 0.25px solid black;
 }
 
 .my-list-button {
   background-color: rgba(109, 109, 110, 0.7);
   color: #fff;
   font-weight: bold;
-  border: .25px solid black;
+  border: 0.25px solid black;
 }
-
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -360,7 +342,6 @@
   transition: transform 0.5s ease-in-out;
 }
 
-
 .carousel img:hover {
   transform: scale(1.05);
 }
@@ -385,7 +366,7 @@
   color: #fff;
   font-size: 2.5rem;
   font-weight: 700;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
   z-index: 10;
   max-width: 70%;
 }
@@ -469,7 +450,6 @@
   height: 90vh;
 }
 
-
 .hero-carousel::before {
   content: "";
   position: absolute;
@@ -491,13 +471,11 @@
   z-index: 3;
 }
 
-
 .carousel-slide.active {
   opacity: 1;
   z-index: 2;
   position: relative; /* or keep absolute depending on layout */
 }
-
 
 .carousel-slide .hero-content {
   max-width: 600px;
@@ -514,13 +492,11 @@
   height: 100%;
 }
 
-
 .carousel-slide {
   min-width: 100%;
   background-size: cover;
   background-position: center;
 }
-
 
 .hero-content {
   position: absolute;
@@ -530,7 +506,6 @@
   max-width: 40%;
   text-align: left;
 }
-
 
 .hero-content.show {
   opacity: 1;
@@ -552,7 +527,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 60%);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 0) 60%
+  );
   z-index: 1;
   pointer-events: none;
 }
@@ -615,7 +595,7 @@ video.fullscreen-video {
   padding: 10px 20px;
   gap: 10px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.3) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
 .poster-row img {
@@ -678,8 +658,8 @@ video.fullscreen-video {
   color: #999;
 }
 
+/* Carousel container and buttons */
 .carousel-section {
-  margin-left: 80px;
   padding: 20px;
 }
 
@@ -736,52 +716,121 @@ video.fullscreen-video {
   right: 10px;
 }
 
+/* Poster rows container */
 #poster-rows {
-  margin-left: 80px;
+  margin-left: 80px; /* sidebar width */
   padding: 30px 20px;
 }
 
+/* Section titles */
 .section-title {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
+/* Poster rows */
 .poster-row {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  overflow-x: auto; /* horizontal scroll if needed */
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
+/* Scrollbar for poster row */
+.poster-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.poster-row::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+/* Poster links and images */
 .poster-row a {
   display: block;
-  width: 160px;
-  transition: transform 0.2s;
+  width: 150px; /* fixed width */
+  height: 225px; /* fixed height for vertical rectangle */
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .poster-row a:hover {
   transform: scale(1.05);
+  z-index: 10; /* bring hovered poster forward */
 }
 
 .poster-row img {
   width: 100%;
-  border-radius: 10px;
+  height: 100%;
   object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
+/* Optional: smooth zoom on image hover inside link */
+.poster-row a:hover img {
+  transform: scale(1.1);
+}
+
+/* Fix carousel width & layering to sit beside sidebar */
 #carouselExampleCaptions {
   margin: 0;
-  max-width: calc(100vw - 80px); /* Full width minus sidebar */
-  position: fixed;               /* Fix to top so it stays visible */
+  max-width: calc(100vw - 80px); /* full viewport width minus sidebar */
+  position: fixed;
   top: 0;
   left: 80px;
-  z-index: 900;                 /* Below sidebar but above content */
+  z-index: 900; /* under sidebar but over main content */
+}
+#carousel,
+.cards,
+h1 {
+  margin-left: 80px; /* same width as navbar */
+  padding: 20px;
+  color: white;
 }
 
-/* Push main content down so it doesn't go under carousel */
+/* Main content area */
 main.content {
-  padding-top: 300px; /* Adjust this height to match carousel height */
   max-width: 1200px;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+/* Optional container with sidebar + main content layout */
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  margin-left: 0vw;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #141414;
+  color: white;
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #000;
+  color: white;
+}
+.carousel-section,
+#poster-rows,
+main.content,
+.main-content {
+  margin-left: 80px; /* equal to sidebar width */
 }
