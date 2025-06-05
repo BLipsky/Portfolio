@@ -792,7 +792,6 @@ video.fullscreen-video {
 .cards,
 h1 {
   margin-left: 80px; /* same width as navbar */
-  padding: 20px;
   color: white;
 }
 
