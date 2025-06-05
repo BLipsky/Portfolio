@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const video = document.createElement('video');
     video.classList.add('fullscreen-video');
     video.src = 'Opening.mp4';       // Set video source
-    video.autoplay = true;
+    video.autoplay = true; 
     video.playsInline = true;        // For mobile browsers to play inline
     video.muted = false;
     video.volume = 1;

@@ -25,7 +25,7 @@
       flex-direction: column;
       align-items: center;
       padding-top: 20px;
-      z-index: 1000;
+      z-index: 1000; 
     }
 
     .nav-links {
@@ -41,11 +41,14 @@
       text-align: center;
     }
 
-    .content {
-      margin-left: 90px;
-      padding: 60px 20px;
-      max-width: 600px;
-    }
+.content {
+  margin-left: 90px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
     h1 {
       font-family: 'Bebas Neue', sans-serif;
@@ -102,14 +105,17 @@
 </div>
 
 <div class="content">
-  <h1>Contact Us</h1>
-  <form>
-    <input type="text" placeholder="Your Name" required />
-    <input type="email" placeholder="Your Email" required />
-    <textarea rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit">Send</button>
-  </form>
+  <div style="max-width: 600px; width: 100%;">
+    <h1>Contact Us</h1>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
 </div>
+
 
 </body>
 </html>
